@@ -33,13 +33,16 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:autofillHints=""
+        android:background="@color/white"
         android:ems="10"
         android:gravity="start|top"
+        android:hint="@string/source_text_hint_label"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toTopOf="@+id/translateButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swapLanguageButton"/>
+        app:layout_constraintTop_toBottomOf="@+id/swapLanguageButton"
+        style="@style/Widget.AppCompat.EditText" />
 
     <EditText
         android:id="@+id/translatedText"
@@ -52,13 +55,15 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:autofillHints=""
+        android:background="@color/white"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/translateButton" />
+        app:layout_constraintTop_toBottomOf="@+id/translateButton"
+        style="@style/Widget.AppCompat.EditText"/>
 
     <Spinner
         android:id="@+id/sourceLanguage"
