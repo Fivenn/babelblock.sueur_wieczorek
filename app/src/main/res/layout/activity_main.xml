@@ -24,6 +24,7 @@
 
     <EditText
         android:id="@+id/sourceText"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -38,14 +39,14 @@
         android:gravity="start|top"
         android:hint="@string/source_text_hint_label"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/translateButton"
+        app:layout_constraintBottom_toTopOf="@+id/micButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/swapLanguageButton"
-        style="@style/Widget.AppCompat.EditText" />
+        app:layout_constraintTop_toBottomOf="@+id/swapLanguageButton" />
 
     <EditText
         android:id="@+id/translatedText"
+        style="@style/Widget.AppCompat.EditText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -59,11 +60,10 @@
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/volumeButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/translateButton"
-        style="@style/Widget.AppCompat.EditText"/>
+        app:layout_constraintTop_toBottomOf="@+id/translateButton" />
 
     <Spinner
         android:id="@+id/sourceLanguage"
@@ -94,6 +94,33 @@
         app:layout_constraintStart_toEndOf="@+id/sourceLanguage"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_swap_horiz"
-        android:contentDescription="@string/swap_translation_content_description" />
+        android:contentDescription="@string/swap_translation_content_description"
+        android:backgroundTint="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/micButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/translateButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_mic"
+        android:contentDescription="@string/dictation_button_content_description"
+        android:backgroundTint="@color/white"/>
+
+    <ImageButton
+        android:id="@+id/volumeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_volume"
+        android:contentDescription="@string/listen_button_content_description"
+        android:backgroundTint="@color/white"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

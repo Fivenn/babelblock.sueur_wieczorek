@@ -3,4 +3,6 @@
     <string name="swap_translation_content_description">Button for reversing the translation direction</string>
     <string name="translate_button_label">Translate</string>
     <string name="source_text_hint_label">Enter text</string>
+    <string name="dictation_button_content_description">Button for dictating a sentence to be translated</string>
+    <string name="listen_button_content_description">Button to listen the result of a translation</string>
 </resources>
