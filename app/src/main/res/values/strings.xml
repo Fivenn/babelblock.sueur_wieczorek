@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Babel Block</string>
     <string name="swap_translation_content_description">Button for reversing the translation direction</string>
+    <string name="translate_button_label">Translate</string>
 </resources>
