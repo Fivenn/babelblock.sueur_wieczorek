@@ -7,7 +7,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var translator: TranslationTool
+    private lateinit var translator: TranslationTool
     lateinit var speaker: TextToSpeechTool
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,16 +17,16 @@ class MainActivity : AppCompatActivity() {
 
         val service = BabelBlockService(this)
 
+        // Translator
         translator = service.translator(Locale.FRENCH, Locale.ENGLISH)
-
         translateButton.setOnClickListener {
             translator.translate(sourceText.text.toString()) { translatedText ->
                 this.translatedText.setText(translatedText)
             }
         }
 
+        // Text To Speech
         speaker = service.textToSpeech()
-
         volumeButton.setOnClickListener {
             val text = translatedText.text.toString()
             speaker.speak(text)

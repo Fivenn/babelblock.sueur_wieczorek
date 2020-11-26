@@ -1,10 +1,11 @@
-package fr.enssat.babelblock.sueur_wieczorek
+package fr.enssat.babelblock.sueur_wieczorek.tools.impl
 
 import android.content.Context
 import android.util.Log
 import com.google.mlkit.common.model.DownloadConditions
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
+import fr.enssat.babelblock.sueur_wieczorek.TranslationTool
 import java.util.*
 
 class TranslatorHandler(context: Context, from: Locale, to: Locale) : TranslationTool {
