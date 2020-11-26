@@ -1,6 +1,7 @@
 package fr.enssat.babelblock.sueur_wieczorek
 
 import android.content.Context
+import fr.enssat.babelblock.sueur_wieczorek.tools.impl.TranslatorHandler
 import fr.enssat.babelblock.tools.impl.TextToSpeechHandler
 import java.util.*
 
