@@ -8,6 +8,7 @@ import java.util.*
 class MainActivity : AppCompatActivity() {
 
     lateinit var translator: TranslationTool
+    lateinit var speaker: TextToSpeechTool
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val service = BabelBlockService(this)
+
         translator = service.translator(Locale.FRENCH, Locale.ENGLISH)
 
         translateButton.setOnClickListener {
@@ -22,11 +24,19 @@ class MainActivity : AppCompatActivity() {
                 this.translatedText.setText(translatedText)
             }
         }
+
+        speaker = service.textToSpeech()
+
+        volumeButton.setOnClickListener {
+            val text = translatedText.text.toString()
+            speaker.speak(text)
+        }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+        override fun onDestroy() {
+            super.onDestroy()
 
-        translator.close()
+            translator.close()
+            speaker.close()
+        }
     }
-}
