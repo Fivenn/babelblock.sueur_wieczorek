@@ -3,23 +3,28 @@ package fr.enssat.babelblock.sueur_wieczorek
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-    }*/
-
-
+    lateinit var translator: TranslationTool
     lateinit var speaker: TextToSpeechTool
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
-        //tts
-        val service = BlockService(this)
+        val service = BabelBlockService(this)
+
+        translator = service.translator(Locale.FRENCH, Locale.ENGLISH)
+
+        translateButton.setOnClickListener {
+            translator.translate(sourceText.text.toString()) { translatedText ->
+                this.translatedText.setText(translatedText)
+            }
+        }
+
         speaker = service.textToSpeech()
 
         volumeButton.setOnClickListener {
@@ -28,10 +33,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onDestroy() {
-        //tts
-        speaker.close()
-        super.onDestroy()
-    }
+        override fun onDestroy() {
+            super.onDestroy()
 
-}
+            translator.close()
+            speaker.close()
+        }
+    }
