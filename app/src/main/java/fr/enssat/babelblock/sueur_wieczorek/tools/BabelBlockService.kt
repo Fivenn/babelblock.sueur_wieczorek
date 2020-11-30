@@ -17,9 +17,10 @@ interface TextToSpeechTool {
 }
 
 class BabelBlockService(val context: Context) {
-    fun translator(from: Locale, to: Locale): TranslationTool = TranslatorHandler(context.applicationContext, from, to)
+    fun translator(from: Locale, to: Locale): TranslationTool =
+        TranslatorHandler(context.applicationContext, from, to)
 
-    fun textToSpeech():TextToSpeechTool {
+    fun textToSpeech(): TextToSpeechTool {
         val locale = Locale.getDefault()
         return TextToSpeechHandler(context.applicationContext, locale)
     }
