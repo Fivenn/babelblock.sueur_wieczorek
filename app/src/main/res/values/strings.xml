@@ -5,4 +5,6 @@
     <string name="source_text_hint_label">Enter text</string>
     <string name="dictation_button_content_description">Button for dictating a sentence to be translated</string>
     <string name="listen_button_content_description">Button to listen the result of a translation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
