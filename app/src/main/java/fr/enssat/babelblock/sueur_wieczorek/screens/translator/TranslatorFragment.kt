@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,12 @@ class TranslatorFragment : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(this).get(TranslatorViewModel::class.java)
 
+        val adapater = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_dropdown_item,
+            viewModel.availableLanguages
+        )
+
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.translator_fragment,
@@ -30,6 +37,8 @@ class TranslatorFragment : Fragment() {
         )
         binding.translateButton.setOnClickListener { onTranslate() }
         binding.volumeButton.setOnClickListener { onTextToSpeech() }
+        binding.sourceLanguage.adapter = adapater
+        binding.targetLanguage.adapter = adapater
 
         return binding.root
     }
