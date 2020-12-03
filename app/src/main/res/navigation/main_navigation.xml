@@ -3,12 +3,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/title_destination">
+    app:startDestination="@id/translator_fragment_destination">
 
     <fragment
-        android:id="@+id/title_destination"
+        android:id="@+id/translator_fragment_destination"
         android:name="fr.enssat.babelblock.sueur_wieczorek.screens.translator.TranslatorFragment"
         android:label="translator_fragment"
-        tools:layout="@layout/translator_fragment"></fragment>
+        tools:layout="@layout/translator_fragment" />
+
+    <fragment
+        android:id="@+id/block_translator_fragment_destination"
+        android:name="fr.enssat.babelblock.sueur_wieczorek.screens.blocktranslator.BlockTranslatorFragment"
+        android:label="block_translator_fragment"
+        tools:layout="@layout/block_translator_fragment" />
 
 </navigation>
