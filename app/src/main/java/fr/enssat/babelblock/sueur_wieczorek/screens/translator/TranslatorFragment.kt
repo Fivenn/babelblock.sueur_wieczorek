@@ -37,13 +37,25 @@ class TranslatorFragment : Fragment() {
             container,
             false
         )
+
+        // Translate button
         binding.translateButton.setOnClickListener {
             viewModel.onTranslate(binding.sourceText.text.toString()) {
                 binding.translatedText.setText(it)
             }
         }
+
+        // Volume button
         binding.volumeButton.setOnClickListener { onTextToSpeech() }
 
+        // Swap language button
+        binding.swapLanguageButton.setOnClickListener {
+            val sourceLanguagePosition = binding.sourceLanguage.selectedItemPosition
+            binding.sourceLanguage.setSelection(binding.targetLanguage.selectedItemPosition)
+            binding.targetLanguage.setSelection(sourceLanguagePosition)
+        }
+
+        // Source language spinner
         binding.sourceLanguage.adapter = adapater
         binding.sourceLanguage.setSelection(adapater.getPosition(Language("fr")))
         binding.sourceLanguage.onItemSelectedListener =
@@ -62,6 +74,7 @@ class TranslatorFragment : Fragment() {
                 }
             }
 
+        // Targeted language spinner
         binding.targetLanguage.adapter = adapater
         binding.targetLanguage.setSelection(adapater.getPosition(Language("en")))
         binding.targetLanguage.onItemSelectedListener =
