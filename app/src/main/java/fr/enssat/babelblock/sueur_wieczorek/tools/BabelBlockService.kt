@@ -1,6 +1,7 @@
 package fr.enssat.babelblock.sueur_wieczorek
 
 import android.content.Context
+import fr.enssat.babelblock.sueur_wieczorek.tools.impl.SpeechRecognizerHandler
 import fr.enssat.babelblock.sueur_wieczorek.tools.impl.TranslatorHandler
 import fr.enssat.babelblock.tools.impl.TextToSpeechHandler
 import java.util.*
@@ -16,7 +17,19 @@ interface TextToSpeechTool {
     fun close()
 }
 
+interface SpeechToTextTool {
+    interface Listener {
+        fun onResult(text: String, isFinal: Boolean)
+    }
+    fun start(listener: Listener)
+    fun stop()
+    fun close()
+}
+
 class BabelBlockService(val context: Context) {
+    fun speechToText(from: Locale = Locale.getDefault()): SpeechToTextTool =
+        SpeechRecognizerHandler(context.applicationContext, from)
+
     fun translator(from: Locale, to: Locale): TranslationTool =
         TranslatorHandler(context.applicationContext, from, to)
 
