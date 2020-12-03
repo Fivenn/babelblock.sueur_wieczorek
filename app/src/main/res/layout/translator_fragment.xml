@@ -71,7 +71,7 @@
 
         <Spinner
             android:id="@+id/sourceLanguage"
-            android:layout_width="114dp"
+            android:layout_width="150dp"
             android:layout_height="31dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
@@ -81,8 +81,8 @@
 
         <Spinner
             android:id="@+id/targetLanguage"
-            android:layout_width="114dp"
-            android:layout_height="31dp"
+            android:layout_width="150dp"
+            android:layout_height="28dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"

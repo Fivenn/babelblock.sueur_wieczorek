@@ -28,7 +28,7 @@ class TranslatorFragment : Fragment() {
         val adapater = ArrayAdapter(
             requireContext(),
             android.R.layout.simple_spinner_dropdown_item,
-            viewModel.availableLanguages
+            viewModel.availableLanguages.sorted()
         )
 
         binding = DataBindingUtil.inflate(
