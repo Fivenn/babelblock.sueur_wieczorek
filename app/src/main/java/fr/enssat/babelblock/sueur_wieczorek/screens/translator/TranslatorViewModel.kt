@@ -12,14 +12,23 @@ import java.util.*
 class TranslatorViewModel(application: Application) : AndroidViewModel(application) {
 
     var service: BabelBlockService = BabelBlockService(getApplication())
-    var translator: TranslationTool
+    private lateinit var translator: TranslationTool
     var textToSpeech: TextToSpeechTool
     val availableLanguages: List<Language> = TranslateLanguage.getAllLanguages()
         .map { Language(it) }
+    var from: String = ""
+    var to: String = ""
 
     init {
-        translator = service.translator(Locale.FRENCH, Locale.ENGLISH)
         textToSpeech = service.textToSpeech()
+    }
+
+    fun onTranslate(sourceText: String, callback: (String) -> Unit) {
+        translator = service.translator(Locale(from), Locale(to))
+        translator.translate(sourceText) { translatedText ->
+            callback(translatedText)
+            translator.close()
+        }
     }
 
     override fun onCleared() {

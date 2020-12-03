@@ -3,6 +3,8 @@ package fr.enssat.babelblock.sueur_wieczorek.tools.impl
 import android.content.Context
 import android.util.Log
 import com.google.mlkit.common.model.DownloadConditions
+import com.google.mlkit.common.model.RemoteModelManager
+import com.google.mlkit.nl.translate.TranslateRemoteModel
 import com.google.mlkit.nl.translate.Translation
 import com.google.mlkit.nl.translate.TranslatorOptions
 import fr.enssat.babelblock.sueur_wieczorek.TranslationTool
@@ -21,10 +23,18 @@ class TranslatorHandler(context: Context, from: Locale, to: Locale) : Translatio
             .requireWifi()
             .build()
 
+    private val modelManager = RemoteModelManager.getInstance()
+
+    private val model = TranslateRemoteModel.Builder(from.toString()).build()
+
     init {
         translator.downloadModelIfNeeded(conditions)
                 .addOnSuccessListener { Log.d("Translation", "download completed") }
-                .addOnFailureListener { e -> Log.e("Translation", "Download failed", e) }
+                .addOnFailureListener {
+                        e -> Log.e("Translation", "Download failed", e)
+                    modelManager.deleteDownloadedModel(model)
+                    modelManager.download(model, conditions)
+                }
     }
 
     override fun translate(text: String, callback: (String) -> Unit) {
