@@ -3,7 +3,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/translator_fragment_destination">
+    app:startDestination="@id/block_translator_fragment_destination">
 
     <fragment
         android:id="@+id/translator_fragment_destination"
