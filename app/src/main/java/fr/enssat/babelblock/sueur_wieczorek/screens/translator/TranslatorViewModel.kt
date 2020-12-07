@@ -24,6 +24,7 @@ class TranslatorViewModel(application: Application) : AndroidViewModel(applicati
     init {
         textToSpeech = service.textToSpeech()
         speechToText = service.speechToText()
+        translator = service.translator(Locale.FRENCH, Locale.ENGLISH) //Correct bug of translator uninitialized
     }
 
     fun onTranslate(sourceText: String, callback: (String) -> Unit) {
