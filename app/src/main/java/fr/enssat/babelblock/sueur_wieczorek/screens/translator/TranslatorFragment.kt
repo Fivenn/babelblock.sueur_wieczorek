@@ -49,7 +49,7 @@ class TranslatorFragment : Fragment() {
             }
         }
 
-        // Volume button
+        // Volume and mic button
         binding.volumeButton.setOnClickListener { onTextToSpeech() }
         binding.micButton.setOnClickListener { onSpeechToText() }
 

@@ -30,6 +30,7 @@ class BlockTranslatorChainAdapter(val blockTranslatorChain: BlockTranslatorChain
 
     override fun onRowMoved(from: Int, to: Int) {
         blockTranslatorChain.move(from, to)
+        notifyItemMoved(from,to)
     }
 
     override fun onRowSelected(viewHolder: RecyclerView.ViewHolder) {
