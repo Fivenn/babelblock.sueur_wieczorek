@@ -3,16 +3,13 @@ package fr.enssat.babelblock.sueur_wieczorek.tools.ui
 import fr.enssat.babelblock.sueur_wieczorek.tools.Language
 
 interface BlockTranslator {
-    fun run()
     fun close()
 }
 
 interface BlockTranslatorDisplay {
     val blockTranslator: BlockTranslator
-    var blockSourceLanguage: Language
-    var blockTargetLanguage: Language
-    var blockSourceText: String
-    var blockTranslatedText: String
+    var blockLanguage: Language
+    var blockText: String
 }
 
 class BlockTranslatorChain(list: List<BlockTranslatorDisplay> = emptyList()) {
@@ -35,10 +32,5 @@ class BlockTranslatorChain(list: List<BlockTranslatorDisplay> = emptyList()) {
     fun add(blockTranslator: BlockTranslatorDisplay) {
         list.add(blockTranslator)
         onChangeListener?.invoke()
-    }
-
-    fun display(position: Int) {
-        fun loop(chain: List<BlockTranslatorDisplay>){}
-        loop(list.drop(position))
     }
 }

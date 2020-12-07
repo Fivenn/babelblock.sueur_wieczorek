@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import fr.enssat.babelblock.sueur_wieczorek.R
 import fr.enssat.babelblock.sueur_wieczorek.databinding.BlockTranslatorFragmentBinding
-import fr.enssat.babelblock.sueur_wieczorek.tools.Language
-import fr.enssat.babelblock.sueur_wieczorek.tools.ui.*
+import fr.enssat.babelblock.sueur_wieczorek.tools.ui.BlockTranslatorChainAdapter
+import fr.enssat.babelblock.sueur_wieczorek.tools.ui.BlockTranslatorChainMoveHelper
 
 class BlockTranslatorFragment : Fragment() {
 
@@ -22,7 +22,7 @@ class BlockTranslatorFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewModel = ViewModelProvider(this).get(BlockTranslatorViewModel::class.java)
 
         binding = DataBindingUtil.inflate(
@@ -32,13 +32,14 @@ class BlockTranslatorFragment : Fragment() {
             false
         )
 
-        // Block translator
-        val blockTranslatorChain = BlockTranslatorChain()
-        val adapter = BlockTranslatorChainAdapter(blockTranslatorChain)
+        // Adapter of the block translator chain
+        val adapter = BlockTranslatorChainAdapter(viewModel.blockTranslatorChain)
 
+        // Dedicated drag and drop move helper
         val moveHelper = BlockTranslatorChainMoveHelper.create(adapter)
         moveHelper.attachToRecyclerView(binding.blockTranslator)
 
+        // Block translator chain
         binding.blockTranslator.adapter = adapter
 
         // Languages list
@@ -48,23 +49,9 @@ class BlockTranslatorFragment : Fragment() {
             viewModel.availableLanguages.sorted()
         )
         binding.languagesList.setOnItemClickListener { _, _, position, _ ->
-            blockTranslatorChain.add(getBlockTranslator(position))
+            viewModel.blockTranslatorChain.add(viewModel.createBlockTranslatorAt(position))
         }
 
         return binding.root
-    }
-
-    private fun getBlockTranslator(index: Int) = object : BlockTranslatorDisplay {
-        override var blockSourceLanguage = Language("fr")
-        override var blockTargetLanguage = Language("")
-        override var blockSourceText = ""
-        override var blockTranslatedText = ""
-        override val blockTranslator = object : BlockTranslator {
-            override fun run() {
-            }
-
-            override fun close() {
-            }
-        }
     }
 }
