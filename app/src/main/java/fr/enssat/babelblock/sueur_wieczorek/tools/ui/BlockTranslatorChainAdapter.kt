@@ -48,7 +48,7 @@ class BlockTranslatorChainAdapter(private val blockTranslatorChain: BlockTransla
             val blockTranslator = blockTranslatorChain.get(index)
             itemView.blockSourceLanguage.text = blockTranslator.blockLanguage.toString()
             itemView.blockSourceText.setText(blockTranslator.blockText)
-            itemView.blockSourceText.doOnTextChanged { text, start, before, count ->
+            itemView.blockSourceText.doOnTextChanged { text, _, _, _ ->
                 blockTranslatorChain.get(index).blockText = text.toString()
             }
         }
