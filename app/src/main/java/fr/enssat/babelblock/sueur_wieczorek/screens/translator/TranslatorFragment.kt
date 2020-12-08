@@ -21,6 +21,7 @@ import fr.enssat.babelblock.sueur_wieczorek.SpeechToTextTool
 import fr.enssat.babelblock.sueur_wieczorek.databinding.TranslatorFragmentBinding
 import fr.enssat.babelblock.sueur_wieczorek.tools.Language
 import kotlinx.android.synthetic.main.translator_fragment.*
+import java.util.*
 
 class TranslatorFragment : Fragment() {
 
@@ -121,7 +122,7 @@ class TranslatorFragment : Fragment() {
     /** Methods for buttons presses **/
 
     private fun onTextToSpeech() {
-        viewModel.textToSpeech.speak(binding.translatedText.text.toString())
+        viewModel.textToSpeech.speak(binding.translatedText.text.toString(), Locale(viewModel.to))
     }
 
     private fun onSpeechToText() {

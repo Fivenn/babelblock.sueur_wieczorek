@@ -1,6 +1,7 @@
 package fr.enssat.babelblock.sueur_wieczorek
 
 import android.content.Context
+import fr.enssat.babelblock.sueur_wieczorek.tools.Language
 import fr.enssat.babelblock.sueur_wieczorek.tools.impl.SpeechRecognizerHandler
 import fr.enssat.babelblock.sueur_wieczorek.tools.impl.TranslatorHandler
 import fr.enssat.babelblock.tools.impl.TextToSpeechHandler
@@ -12,7 +13,7 @@ interface TranslationTool {
 }
 
 interface TextToSpeechTool {
-    fun speak(text: String)
+    fun speak(text: String, locale: Locale)
     fun stop()
     fun close()
 }
