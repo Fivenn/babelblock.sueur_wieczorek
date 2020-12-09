@@ -1,18 +1,20 @@
 package fr.enssat.babelblock.sueur_wieczorek
 
 import android.content.Context
+import com.google.android.gms.tasks.Task
+import fr.enssat.babelblock.sueur_wieczorek.tools.Language
 import fr.enssat.babelblock.sueur_wieczorek.tools.impl.SpeechRecognizerHandler
 import fr.enssat.babelblock.sueur_wieczorek.tools.impl.TranslatorHandler
 import fr.enssat.babelblock.tools.impl.TextToSpeechHandler
 import java.util.*
 
 interface TranslationTool {
-    fun translate(text: String, callback: (String) -> Unit)
+    fun translate(text: String, callback: (String) -> Unit): Task<String>
     fun close()
 }
 
 interface TextToSpeechTool {
-    fun speak(text: String)
+    fun speak(text: String, locale: Locale)
     fun stop()
     fun close()
 }

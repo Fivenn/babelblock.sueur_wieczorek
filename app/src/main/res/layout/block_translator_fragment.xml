@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/block_translator_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screens.blocktranslator.BlockTranslatorFragment"
+        tools:ignore="LabelFor"> <!-- ignore accessibility for this moment -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/block_translator"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:context=".screens.blocktranslator.BlockTranslatorFragment"
+            tools:listitem="@layout/block_translator_list" />
+
+        <ListView
+            android:id="@+id/languages_list"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="#888"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@android:layout/simple_list_item_1" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
