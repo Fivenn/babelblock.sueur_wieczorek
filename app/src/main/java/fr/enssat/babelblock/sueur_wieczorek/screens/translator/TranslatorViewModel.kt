@@ -27,11 +27,13 @@ class TranslatorViewModel(application: Application) : AndroidViewModel(applicati
     }
 
     fun onTranslate(sourceText: String, callback: (String) -> Unit) {
-        translator = service.translator(Locale(from), Locale(to))
-        translator.translate(sourceText) { translatedText ->
-            callback(translatedText)
-            translator.close()
-        }
+        Thread {
+            translator = service.translator(Locale(from), Locale(to))
+            translator.translate(sourceText) { translatedText ->
+                callback(translatedText)
+                translator.close()
+            }
+        }.start()
     }
 
     override fun onCleared() {
