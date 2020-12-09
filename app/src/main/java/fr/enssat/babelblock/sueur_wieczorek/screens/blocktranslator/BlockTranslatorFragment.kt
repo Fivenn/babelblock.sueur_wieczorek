@@ -7,13 +7,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.work.WorkInfo
 import fr.enssat.babelblock.sueur_wieczorek.R
 import fr.enssat.babelblock.sueur_wieczorek.databinding.BlockTranslatorFragmentBinding
-import fr.enssat.babelblock.sueur_wieczorek.tools.KEY_BLOCK_INDEX
-import fr.enssat.babelblock.sueur_wieczorek.tools.KEY_BLOCK_TEXT
 import fr.enssat.babelblock.sueur_wieczorek.tools.ui.BlockTranslatorChainAdapter
 import fr.enssat.babelblock.sueur_wieczorek.tools.ui.BlockTranslatorChainMoveHelper
 
@@ -55,10 +51,8 @@ class BlockTranslatorFragment : Fragment() {
             viewModel.availableLanguages.sorted()
         )
         binding.languagesList.setOnItemClickListener { _, _, position, _ ->
-            if(viewModel.blockTranslatorChain.size < 4) {
-                viewModel.blockTranslatorChain.add(viewModel.createBlockTranslatorAt(position))
-                viewModel.translateBlockTranslatorChain()
-            }
+            viewModel.blockTranslatorChain.add(viewModel.createBlockTranslatorAt(position))
+            viewModel.translateBlockTranslatorChain()
         }
 
         return binding.root

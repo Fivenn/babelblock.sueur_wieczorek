@@ -72,7 +72,6 @@ class BlockTranslatorViewModel(application: Application) : AndroidViewModel(appl
                     val blockText = workInfo.outputData.getString(KEY_BLOCK_TEXT)
 
                     if (blockIndex != -1 && !blockText.isNullOrEmpty()) {
-                        println("$blockIndex $blockText")
                         blockTranslatorChain.setText(blockIndex, blockText)
                     }
                 }

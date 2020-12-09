@@ -39,7 +39,6 @@ class TranslatorViewModel(application: Application) : AndroidViewModel(applicati
     override fun onCleared() {
         super.onCleared()
 
-        translator.close()
         textToSpeech.close()
         speechToText.close()
     }
