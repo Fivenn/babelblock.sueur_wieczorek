@@ -3,6 +3,7 @@ import android.content.Context
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import fr.enssat.babelblock.sueur_wieczorek.TextToSpeechTool
+import fr.enssat.babelblock.sueur_wieczorek.tools.Language
 import java.util.*
 
 class TextToSpeechHandler(context: Context, val locale: Locale): TextToSpeechTool {
@@ -13,10 +14,12 @@ class TextToSpeechHandler(context: Context, val locale: Locale): TextToSpeechToo
         }
     })
 
-    override fun speak(text: String) {
-        speaker.language = locale
+    override fun speak(text: String, loc: Locale) {
+        speaker.language = loc
         speaker.speak(text, TextToSpeech.QUEUE_FLUSH, null)
     }
+
+
 
     override fun stop() {
         speaker.stop()

@@ -21,18 +21,19 @@ import fr.enssat.babelblock.sueur_wieczorek.SpeechToTextTool
 import fr.enssat.babelblock.sueur_wieczorek.databinding.TranslatorFragmentBinding
 import fr.enssat.babelblock.sueur_wieczorek.tools.Language
 import kotlinx.android.synthetic.main.translator_fragment.*
+import java.util.*
 
 class TranslatorFragment : Fragment() {
 
     private lateinit var viewModel: TranslatorViewModel
     private lateinit var binding: TranslatorFragmentBinding
-    private val RecordAudioRequestCode = 1
+    private val recordAudioRequestCode = 1
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         viewModel = ViewModelProvider(this).get(TranslatorViewModel::class.java)
 
         binding = DataBindingUtil.inflate(
@@ -49,7 +50,7 @@ class TranslatorFragment : Fragment() {
             }
         }
 
-        // Volume button
+        // Volume and mic button
         binding.volumeButton.setOnClickListener { onTextToSpeech() }
         binding.micButton.setOnClickListener { onSpeechToText() }
 
@@ -121,7 +122,7 @@ class TranslatorFragment : Fragment() {
     /** Methods for buttons presses **/
 
     private fun onTextToSpeech() {
-        viewModel.textToSpeech.speak(binding.translatedText.text.toString())
+        viewModel.textToSpeech.speak(binding.translatedText.text.toString(), Locale(viewModel.to))
     }
 
     private fun onSpeechToText() {
@@ -149,7 +150,7 @@ class TranslatorFragment : Fragment() {
         ActivityCompat.requestPermissions(
             this.requireActivity(),
             arrayOf(Manifest.permission.RECORD_AUDIO),
-            RecordAudioRequestCode
+            recordAudioRequestCode
         )
     }
 
@@ -159,7 +160,7 @@ class TranslatorFragment : Fragment() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == RecordAudioRequestCode && grantResults.size > 0) {
+        if (requestCode == recordAudioRequestCode && grantResults.size > 0) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 Toast.makeText(this.requireContext(), "Permission Granted", Toast.LENGTH_SHORT)
                     .show()

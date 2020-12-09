@@ -30,14 +30,13 @@ class TranslatorHandler(context: Context, from: Locale, to: Locale) : Translatio
     private val model = TranslateRemoteModel.Builder(from.toString()).build()
 
     init {
-        Tasks.await(translator.downloadModelIfNeeded(conditions)
+        translator.downloadModelIfNeeded(conditions)
             .addOnSuccessListener { Log.d("Translation", "download completed") }
             .addOnFailureListener { e ->
                 Log.e("Translation", "Download failed", e)
                 modelManager.deleteDownloadedModel(model)
                 modelManager.download(model, conditions)
             }
-        )
     }
 
     override fun translate(text: String, callback: (String) -> Unit): Task<String> {
