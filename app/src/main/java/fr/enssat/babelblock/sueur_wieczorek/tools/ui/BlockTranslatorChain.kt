@@ -33,4 +33,8 @@ class BlockTranslatorChain(list: List<BlockTranslatorDisplay> = emptyList()) {
         list.add(blockTranslator)
         onChangeListener?.invoke()
     }
+    fun setText(index: Int, blockText: String) {
+        list[index].blockText = blockText
+        onChangeListener?.invoke()
+    }
 }

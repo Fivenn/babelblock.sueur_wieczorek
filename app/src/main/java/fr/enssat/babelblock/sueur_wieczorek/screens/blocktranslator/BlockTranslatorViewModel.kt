@@ -66,16 +66,18 @@ class BlockTranslatorViewModel(application: Application) : AndroidViewModel(appl
                 return@Observer
             }
 
-            val workInfo = listOfWorkInfo.last()
+            listOfWorkInfo.forEach { workInfo ->
+                if (workInfo.state.isFinished) {
+                    val blockIndex = workInfo.outputData.getInt(KEY_BLOCK_INDEX, -1)
+                    val blockText = workInfo.outputData.getString(KEY_BLOCK_TEXT)
 
-            if (workInfo.state.isFinished) {
-                val blockIndex = workInfo.outputData.getInt(KEY_BLOCK_INDEX, -1)
-                val blockText = workInfo.outputData.getString(KEY_BLOCK_TEXT)
-
-                if (blockIndex != -1 && !blockText.isNullOrEmpty()) {
-                    blockTranslatorChain.get(blockIndex).blockText = blockText
+                    if (blockIndex != -1 && !blockText.isNullOrEmpty()) {
+                        println("$blockIndex $blockText")
+                        blockTranslatorChain.setText(blockIndex, blockText)
+                    }
                 }
             }
+            workManager.pruneWork()
         }
     }
 }
