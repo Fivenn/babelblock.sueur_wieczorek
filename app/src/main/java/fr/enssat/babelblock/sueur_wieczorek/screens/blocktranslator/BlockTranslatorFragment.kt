@@ -55,8 +55,10 @@ class BlockTranslatorFragment : Fragment() {
             viewModel.availableLanguages.sorted()
         )
         binding.languagesList.setOnItemClickListener { _, _, position, _ ->
-            viewModel.blockTranslatorChain.add(viewModel.createBlockTranslatorAt(position))
-            viewModel.translateBlockTranslatorChain()
+            if(viewModel.blockTranslatorChain.size < 4) {
+                viewModel.blockTranslatorChain.add(viewModel.createBlockTranslatorAt(position))
+                viewModel.translateBlockTranslatorChain()
+            }
         }
 
         return binding.root
