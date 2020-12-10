@@ -119,12 +119,15 @@ class TranslatorFragment : Fragment() {
     }
 
     /**
-     *
+     *  Allow user to get his text being read by smartphone
      */
     private fun onTextToSpeech() {
         viewModel.textToSpeech.speak(binding.translatedText.text.toString(), Locale(viewModel.to))
     }
 
+    /**
+     * Create an event on mic button which allow user to speak when the button is pressed
+     */
     private fun onSpeechToText() {
         micButton.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
@@ -147,7 +150,7 @@ class TranslatorFragment : Fragment() {
     }
 
     /**
-     *
+     *  Check if audio record permission is active
      */
     private fun checkPermission() {
         ActivityCompat.requestPermissions(
@@ -158,7 +161,7 @@ class TranslatorFragment : Fragment() {
     }
 
     /**
-     *
+     *  Ask to the user the permission and print it on a toast
      */
     override fun onRequestPermissionsResult(
         requestCode: Int,
