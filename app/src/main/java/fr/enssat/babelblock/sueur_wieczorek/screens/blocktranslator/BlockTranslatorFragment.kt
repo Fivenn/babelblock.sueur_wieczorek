@@ -32,6 +32,7 @@ class BlockTranslatorFragment : Fragment() {
             false
         )
 
+        // Add an observer on workManager to get the result of a TranslateWorker
         viewModel.outputWorkInfos.observe(viewLifecycleOwner, viewModel.workInfosObserver())
 
         // Adapter of the block translator chain

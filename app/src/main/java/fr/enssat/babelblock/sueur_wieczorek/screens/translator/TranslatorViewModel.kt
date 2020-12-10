@@ -26,7 +26,13 @@ class TranslatorViewModel(application: Application) : AndroidViewModel(applicati
         speechToText = service.speechToText()
     }
 
-    fun onTranslate(sourceText: String, callback: (String) -> Unit) {
+    /**
+     * A method to translate a text according to the source and destination language set when initializing the translator service
+     *
+     * @param sourceText the source text to translate
+     * @param callback the callback to process when a text is translated
+     */
+    fun translate(sourceText: String, callback: (String) -> Unit) {
         Thread {
             translator = service.translator(Locale(from), Locale(to))
             translator.translate(sourceText) { translatedText ->

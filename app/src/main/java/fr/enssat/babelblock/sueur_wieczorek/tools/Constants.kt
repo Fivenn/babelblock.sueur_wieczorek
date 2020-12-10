@@ -4,7 +4,6 @@ package fr.enssat.babelblock.sueur_wieczorek.tools
 
 // Workers
 const val TAG_OUTPUT = "OUTPUT"
-const val TRANSLATE_BLOCK_TRANSLATOR_CHAIN_WIRK_NAME = "translate_block_translator_chain_work"
 const val KEY_PREVIOUS_BLOCK_TEXT = "KEY_PREVIOUS_BLOCK_TEXT"
 const val KEY_PREVIOUS_BLOCK_LANGUAGE = "KEY_PREVIOUS_BLOCK_LANGUAGE"
 const val KEY_BLOCK_TEXT = "const val KEY_BLOCK"

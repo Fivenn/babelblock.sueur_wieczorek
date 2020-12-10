@@ -45,7 +45,7 @@ class TranslatorFragment : Fragment() {
 
         // Translate button
         binding.translateButton.setOnClickListener {
-            viewModel.onTranslate(binding.sourceText.text.toString()) {
+            viewModel.translate(binding.sourceText.text.toString()) {
                 binding.translatedText.setText(it)
             }
         }
@@ -53,7 +53,6 @@ class TranslatorFragment : Fragment() {
         // Volume and mic button
         binding.volumeButton.setOnClickListener { onTextToSpeech() }
         binding.micButton.setOnClickListener { onSpeechToText() }
-
 
         if (ContextCompat.checkSelfPermission(
                 this.requireContext(),
@@ -119,8 +118,9 @@ class TranslatorFragment : Fragment() {
         return binding.root
     }
 
-    /** Methods for buttons presses **/
-
+    /**
+     *
+     */
     private fun onTextToSpeech() {
         viewModel.textToSpeech.speak(binding.translatedText.text.toString(), Locale(viewModel.to))
     }
@@ -146,6 +146,9 @@ class TranslatorFragment : Fragment() {
         }
     }
 
+    /**
+     *
+     */
     private fun checkPermission() {
         ActivityCompat.requestPermissions(
             this.requireActivity(),
@@ -154,6 +157,9 @@ class TranslatorFragment : Fragment() {
         )
     }
 
+    /**
+     *
+     */
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String?>,

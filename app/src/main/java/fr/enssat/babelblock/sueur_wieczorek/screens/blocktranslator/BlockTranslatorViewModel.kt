@@ -26,6 +26,9 @@ class BlockTranslatorViewModel(application: Application) : AndroidViewModel(appl
         outputWorkInfos = workManager.getWorkInfosByTagLiveData(TAG_OUTPUT)
     }
 
+    /**
+     * Create a block translator component to display with its informations
+     */
     fun createBlockTranslatorAt(index: Int) = object : BlockTranslatorDisplay {
         override var blockLanguage = availableLanguages.sorted()[index]
         override var blockText = ""
@@ -36,6 +39,9 @@ class BlockTranslatorViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
+    /**
+     * Create an instance of TranslateWorker for each block displayed
+     */
     fun translateBlockTranslatorChain() {
         for (index in 1 until blockTranslatorChain.size) {
             val translateRequest = OneTimeWorkRequestBuilder<TranslateWorker>()
@@ -47,6 +53,12 @@ class BlockTranslatorViewModel(application: Application) : AndroidViewModel(appl
         }
     }
 
+    /**
+     * Create input data for a worker depending of an index of block
+     *
+     * @param index: the index of block
+     * @return the needed data of a block for a worker
+     */
     private fun createInputDataForTranslateBuilder(index: Int): Data {
         val builder = Data.Builder()
         builder.putString(KEY_PREVIOUS_BLOCK_TEXT, blockTranslatorChain.get(index - 1).blockText)
@@ -60,6 +72,11 @@ class BlockTranslatorViewModel(application: Application) : AndroidViewModel(appl
         return builder.build()
     }
 
+    /**
+     * Create an observer for a workManager
+     *
+     * @return the observer of a workManager
+     */
     fun workInfosObserver(): Observer<List<WorkInfo>> {
         return Observer { listOfWorkInfo ->
             if (listOfWorkInfo.isNullOrEmpty()) {
